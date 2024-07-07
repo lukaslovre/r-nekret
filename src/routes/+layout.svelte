@@ -1,11 +1,7 @@
 <script lang="ts">
   import { page } from "$app/stores";
 
-  let path: string;
-
-  let unsubscribe = page.subscribe((value) => {
-    path = value.url.pathname;
-  });
+  let path = $page.url.pathname;
 </script>
 
 <header>
@@ -58,13 +54,13 @@
 
     transition: color 150ms ease-out;
   }
+
+  nav ul li:hover {
+    color: #000;
+  }
+
   nav ul li.active {
     color: #000;
     font-weight: 500;
-  }
-
-  nav ul li a {
-    text-decoration: none;
-    color: inherit;
   }
 </style>
