@@ -24,6 +24,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    padding-top: 3rem;
+    padding-bottom: 5rem;
   }
 
   h1 {

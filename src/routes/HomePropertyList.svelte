@@ -10,21 +10,23 @@
   };
 </script>
 
-<h2>Ponuda nekretnina</h2>
+<section id="home-property-list">
+  <h2>Ponuda nekretnina</h2>
 
-<HomePropertyNavigation
-  options={[
-    { label: "Stanovi", url: "/nekretnine/stan" },
-    { label: "Kuće", url: "/nekretnine/kuca" },
-    { label: "Poslovni prostori", url: "/nekretnine/poslovni" },
-    { label: "Zemljišta", url: "/nekretnine/zemljiste" },
-  ]}
-/>
+  <HomePropertyNavigation
+    options={[
+      { label: "Stanovi", url: "/nekretnine/stan" },
+      { label: "Kuće", url: "/nekretnine/kuca" },
+      { label: "Poslovni prostori", url: "/nekretnine/poslovni" },
+      { label: "Zemljišta", url: "/nekretnine/zemljiste" },
+    ]}
+  />
 
-<section id="property-list-container">
-  {#each data.body.properties as property}
-    <PropertyCard {property} />
-  {/each}
+  <section id="property-list-container">
+    {#each data.body.properties as property}
+      <PropertyCard {property} />
+    {/each}
+  </section>
 </section>
 
 <style>
@@ -39,9 +41,17 @@
     border-bottom: 1px solid #bfbfbf;
   }
 
+  #home-property-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
   #property-list-container {
+    margin-top: 1rem;
+
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 4rem 4rem;
   }
 </style>

@@ -4,6 +4,7 @@
   #map {
     height: 10rem;
     width: 100%;
+    margin-bottom: 9rem;
 
     background-color: #f0f0f0;
     border: 1px solid rgba(0, 0, 0, 0.1);
