@@ -4,15 +4,13 @@
   import HomePropertyList from "./HomePropertyList.svelte";
 
   export let data: {
-    status: 200;
+    status: number;
     body: {
       properties: Property[];
     };
   };
-
-  console.log(data.body.properties);
 </script>
 
 <Map />
 
-<HomePropertyList />
+<HomePropertyList {data} />

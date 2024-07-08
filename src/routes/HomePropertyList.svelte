@@ -1,14 +1,16 @@
 <script lang="ts">
+  import PropertyCard from "$lib/PropertyCard.svelte";
   import HomePropertyNavigation from "./HomePropertyNavigation.svelte";
+
+  export let data: {
+    status: number;
+    body: {
+      properties: Property[];
+    };
+  };
 </script>
 
 <h2>Ponuda nekretnina</h2>
-
-<!-- <li class:active={type === "stan"}><a href="/nekretnine/stan">Stanovi</a></li>
-<li class:active={type === "kuca"}><a href="/nekretnine/kuca">Kuće</a></li>
-<li class:active={type === "poslovni"}>
-  <a href="/nekretnine/poslovni">Poslovni prostori</a>
-</li> -->
 
 <HomePropertyNavigation
   options={[
@@ -18,6 +20,12 @@
     { label: "Zemljišta", url: "/nekretnine/zemljiste" },
   ]}
 />
+
+<section id="property-list-container">
+  {#each data.body.properties as property}
+    <PropertyCard {property} />
+  {/each}
+</section>
 
 <style>
   h2 {
@@ -29,5 +37,11 @@
     margin: 0 2rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #bfbfbf;
+  }
+
+  #property-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
   }
 </style>
