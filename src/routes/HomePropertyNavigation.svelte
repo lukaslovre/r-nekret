@@ -1,7 +1,8 @@
 <script lang="ts">
   import { page } from "$app/stores";
 
-  export let options: { label: string; url: string }[];
+  export let options: string[];
+  export let selectedOption: string;
 
   let path = $page.url.pathname;
   let type: PropertyType = figureOutType();
@@ -16,8 +17,10 @@
 </script>
 
 <ul class="propertyTypesFilter">
-  {#each options as { label, url }}
-    <li class:active={url === type}><a href={url}>{label}</a></li>
+  {#each options as label}
+    <li class:active={selectedOption === label}>
+      <button type="button" on:click={() => (selectedOption = label)}>{label}</button>
+    </li>
   {/each}
 </ul>
 
@@ -41,5 +44,14 @@
   .propertyTypesFilter li.active {
     color: #262626;
     font-weight: 500;
+  }
+
+  .propertyTypesFilter button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    color: inherit;
+    font: inherit;
   }
 </style>

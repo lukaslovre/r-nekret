@@ -8,18 +8,16 @@
       properties: Property[];
     };
   };
+
+  let selectedOption = "Stanovi";
 </script>
 
 <section id="home-property-list">
   <h2>Ponuda nekretnina</h2>
 
   <HomePropertyNavigation
-    options={[
-      { label: "Stanovi", url: "/nekretnine/stan" },
-      { label: "Kuće", url: "/nekretnine/kuca" },
-      { label: "Poslovni prostori", url: "/nekretnine/poslovni" },
-      { label: "Zemljišta", url: "/nekretnine/zemljiste" },
-    ]}
+    options={["Stanovi", "Kuće", "Poslovni prostori", "Zemljišta"]}
+    bind:selectedOption
   />
 
   <section id="property-list-container">
@@ -52,6 +50,6 @@
 
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    gap: 4rem 4rem;
+    gap: 4rem;
   }
 </style>
