@@ -1,65 +1,79 @@
 <script lang="ts">
   import ContactCard from "$lib/ContactCard.svelte";
+  import MapWithSingleMarker from "$lib/MapWithSingleMarker.svelte";
+  import { formatPriceToString } from "$lib/utils";
 
-  export let data: { slug: string };
+  export let data: { property: DbProperty };
 
-  console.log(data.slug);
+  function combineLocation(grad: string, kvart: string, adresa: string) {
+    return `${grad}, ${adresa}`;
+  }
+
+  function formatPersonToContactCard(person: DbProdavac) {
+    return {
+      pfp: person.slika,
+      name: person.ime,
+      description: person.opis,
+      phone: person.mobitel,
+      email: person.email,
+    };
+  }
 </script>
 
 <div class="images-container">
   <div>
-    <img src="https://picsum.photos/200/300" alt="" />
+    <img src={data.property.slike[0]} alt="" />
   </div>
 
   <div class="other-photos">
-    <img src="https://picsum.photos/150/300" alt="" />
-    <img src="https://picsum.photos/151/300" alt="" />
+    {#each data.property.slike.slice(1) as photo}
+      <img src={photo} alt="" />
+    {/each}
   </div>
 </div>
 
 <div class="two-col-container">
   <div class="col-1">
-    <p class="price">€ 819,000</p>
-    <p class="location">Zagreb, Crveni križ</p>
+    <p class="price">€ {formatPriceToString(data.property.cijena)}</p>
+    <p class="location">
+      {combineLocation(data.property.grad, data.property.kvart, data.property.adresa)}
+    </p>
     <p class="description">
-      Welcome to your dream home! This beautifully updated 3-bedroom, 2.5-bathroom
-      property offers the perfect blend of modern convenience and historic charm. Nestled
-      in the heart of downtown Springfield, this home is just steps away from local shops,
-      restaurants, and parks, making it an ideal location for families and professionals
-      alike.
+      {data.property.opis}
     </p>
     <div class="features-container">
       <div class="feature">
         <p class="feature-label">Kvadratura</p>
         <ul class="feature-values">
-          <li>160 m2</li>
+          <li>{data.property.kvadratura} m2</li>
         </ul>
       </div>
 
-      <div class="feature">
-        <p class="feature-label">Sobe</p>
-        <ul class="feature-values">
-          <li>5 spavaćih soba</li>
-          <li>2 kupaone</li>
-        </ul>
-      </div>
+      {#each Object.keys(data.property.ostale_info) as featureKey}
+        <div class="feature">
+          <p class="feature-label">{featureKey}</p>
+          <ul class="feature-values">
+            {#each data.property.ostale_info[featureKey] as featureValue}
+              <li>{featureValue}</li>
+            {/each}
+          </ul>
+        </div>
+      {/each}
     </div>
 
     <!-- contact -->
     <div class="contact-container">
       <h2>Kontakt</h2>
-      <ContactCard
-        person={{
-          pfp: "https://www.psychologs.com/wp-content/uploads/2024/01/8-tips-to-be-a-jolly-person.jpg",
-          name: "John Doe",
-          description: "Prodajem stan u Zagrebu",
-          phone: "091 123 4567",
-          email: "reanekretnine@gmail.com",
-        }}
-      />
+      <ContactCard person={formatPersonToContactCard(data.property.expand.kontakt)} />
     </div>
   </div>
-  <div class="col-2"></div>
+  <div class="col-2">
+    <MapWithSingleMarker location={{ lat: data.property.lat, lng: data.property.lon }}>
+      <img src={data.property.slike[0]} alt="the real estate office from the outside" />
+    </MapWithSingleMarker>
+
+    <img src={data.property.nacrt[0] || ""} alt="tlocrt" class="plan" />
+  </div>
 </div>
 
 <style>
@@ -160,5 +174,17 @@
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
+  }
+
+  /* col 2 */
+  .col-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  .col-2 img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
   }
 </style>

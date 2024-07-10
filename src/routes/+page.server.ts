@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ params }) => {
     body: {
       properties: [
         {
-          id: "1",
+          id: "yp9azal5yvebnbj",
           location: "Zagreb",
           price: 100000,
           squareMeters: 100,

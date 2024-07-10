@@ -9,10 +9,7 @@
 </script>
 
 <div class="contact-card">
-  <img
-    src="https://www.psychologs.com/wp-content/uploads/2024/01/8-tips-to-be-a-jolly-person.jpg"
-    alt=""
-  />
+  <img src={person.pfp} alt="" />
 
   <div class="contact-info">
     <p class="name">{person.name}</p>
