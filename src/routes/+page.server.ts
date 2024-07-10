@@ -13,7 +13,9 @@ export const load: PageServerLoad = async ({ params }) => {
           bedrooms: 2,
           bathrooms: 1,
           description: "Lorem ipsum",
-          images: ["https://via.placeholder.com/150"],
+          images: [
+            "https://rea-nekretnine.hr/media/2024/03/946E0D69-2202-4CC9-B798-76ED7DEA1A96-500x375.jpeg",
+          ],
           features: ["feature1", "feature2"],
           propertyType: "stan",
         },
@@ -25,7 +27,9 @@ export const load: PageServerLoad = async ({ params }) => {
           bedrooms: 3,
           bathrooms: 2,
           description: "Lorem ipsum",
-          images: ["https://via.placeholder.com/150"],
+          images: [
+            "https://rea-nekretnine.hr/media/2024/03/22A3FFFA-5CBA-472C-A44F-2181AA518D83-500x375.jpeg",
+          ],
           features: ["feature1", "feature2"],
           propertyType: "kuca",
         },
@@ -37,14 +41,16 @@ export const load: PageServerLoad = async ({ params }) => {
           bedrooms: 4,
           bathrooms: 3,
           description: "Lorem ipsum",
-          images: ["https://via.placeholder.com/150"],
+          images: [
+            "https://rea-nekretnine.hr/media/2024/03/8340BE05-4A76-4D92-9C90-CD702F743461-500x375.jpeg",
+          ],
           features: ["feature1", "feature2"],
           propertyType: "poslovni",
         },
       ],
     },
   } as {
-    status: 200;
+    status: number;
     body: {
       properties: Property[];
     };

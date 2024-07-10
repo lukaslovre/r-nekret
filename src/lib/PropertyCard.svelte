@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <button type="button">Više informacija &gt;</button>
+  <a class="more-info-button" href={`/details/${property.id}`}>Više informacija &gt;</a>
 </div>
 
 <style>
@@ -68,7 +68,7 @@
     gap: 1.5rem;
   }
 
-  .property-card button {
+  .property-card .more-info-button {
     background-color: #f5f5f5;
     padding: 0.5rem 0;
     border-radius: 0.375rem;
@@ -78,6 +78,13 @@
     color: #0080ff;
     font-size: 1rem;
     font-weight: 600;
+    text-align: center;
+
+    cursor: pointer;
+    transition: background-color 200ms ease-out;
+  }
+  .property-card .more-info-button:hover {
+    background-color: #e6e6e6;
   }
 
   .property-card .property-data-container .location {

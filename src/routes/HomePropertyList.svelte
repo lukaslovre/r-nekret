@@ -25,6 +25,8 @@
       <PropertyCard {property} />
     {/each}
   </section>
+
+  <a href="/nekretnine" class="see-all-link">Vidi sve nekretnine &gt;</a>
 </section>
 
 <style>
@@ -51,5 +53,16 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     gap: 4rem;
+  }
+
+  .see-all-link {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0080ff;
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .see-all-link:hover {
+    text-decoration: underline;
   }
 </style>
