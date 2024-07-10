@@ -1,11 +1,11 @@
 <script lang="ts">
   import { page } from "$app/stores";
 
-  let path = $page.url.pathname;
+  $: path = $page.url.pathname;
 </script>
 
 <header>
-  <h1>Rea Nekretnine</h1>
+  <a href="/"> <h1>Rea Nekretnine</h1></a>
   <nav>
     <ul>
       <li class:active={path === "/"}><a href="/">Naslovnica</a></li>

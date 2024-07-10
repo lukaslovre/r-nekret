@@ -1,4 +1,6 @@
 <script lang="ts">
+  import ContactCard from "$lib/ContactCard.svelte";
+
   export let data: { slug: string };
 
   console.log(data.slug);
@@ -46,19 +48,15 @@
     <!-- contact -->
     <div class="contact-container">
       <h2>Kontakt</h2>
-      <div class="contact-card">
-        <img
-          src="https://www.psychologs.com/wp-content/uploads/2024/01/8-tips-to-be-a-jolly-person.jpg"
-          alt=""
-        />
-
-        <div class="contact-info">
-          <p class="name">Marija Marić</p>
-          <p class="description">Lorem ipsum sa belum de cosic</p>
-          <p class="copyable">099 235 9500</p>
-          <p class="copyable">reanekretnine@gmail.com</p>
-        </div>
-      </div>
+      <ContactCard
+        person={{
+          pfp: "https://www.psychologs.com/wp-content/uploads/2024/01/8-tips-to-be-a-jolly-person.jpg",
+          name: "John Doe",
+          description: "Prodajem stan u Zagrebu",
+          phone: "091 123 4567",
+          email: "reanekretnine@gmail.com",
+        }}
+      />
     </div>
   </div>
   <div class="col-2"></div>
@@ -162,43 +160,5 @@
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-  }
-  .contact-container .contact-card {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1.5rem;
-
-    border-radius: 0.5rem;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.125);
-  }
-
-  .contact-card img {
-    width: 8rem;
-    height: 8rem;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid #f2f2f2;
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.075);
-  }
-
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-  .contact-info .name {
-    font-size: 1.25rem;
-    font-weight: 500;
-  }
-  .contact-info .description {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-  .contact-info .copyable {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #0080ff;
   }
 </style>
