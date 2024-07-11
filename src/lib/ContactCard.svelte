@@ -30,7 +30,7 @@
 
     border-radius: 0.5rem;
     background: linear-gradient(90deg, #f2f2f2 0%, #fafafa 100%);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.125);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.125);
   }
 
   .contact-card img {

@@ -9,7 +9,9 @@
   <nav>
     <ul>
       <li class:active={path === "/"}><a href="/">Naslovnica</a></li>
-      <li class:active={path === "/nekretnine"}><a href="/nekretnine">Nekretnine</a></li>
+      <li class:active={path === "/nekretnine" || path.startsWith("/details")}>
+        <a href="/nekretnine">Nekretnine</a>
+      </li>
       <li class:active={path === "/kontakt"}><a href="/kontakt">Kontakt</a></li>
     </ul>
   </nav>
@@ -44,7 +46,7 @@
 
   nav ul {
     display: flex;
-    gap: 2.5rem;
+    gap: 3rem;
 
     list-style: none;
   }

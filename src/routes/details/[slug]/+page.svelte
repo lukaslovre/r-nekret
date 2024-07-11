@@ -22,12 +22,16 @@
 
 <div class="images-container">
   <div>
-    <img src={data.property.slike[0]} alt="" />
+    <div class="img-container">
+      <img src={data.property.slike[0]} alt="" />
+    </div>
   </div>
 
   <div class="other-photos">
     {#each data.property.slike.slice(1) as photo}
-      <img src={photo} alt="" />
+      <div class="img-container">
+        <img src={photo} alt="" />
+      </div>
     {/each}
   </div>
 </div>
@@ -77,6 +81,36 @@
 </div>
 
 <style>
+  .img-container {
+    width: 100%;
+    height: 20rem;
+
+    position: relative;
+  }
+  .img-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+  }
+
+  .other-photos .img-container::after {
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* border-radius: 0.5rem 0.5rem 0.125rem 0.125rem; */
+  }
+
+  /* div */
+
   .images-container {
     display: flex;
     gap: 4rem;
@@ -96,6 +130,10 @@
     height: 100%;
     object-fit: cover;
     border-radius: 0.25rem;
+    box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.125);
+  }
+  .other-photos img {
+    box-shadow: none;
   }
 
   .two-col-container {
