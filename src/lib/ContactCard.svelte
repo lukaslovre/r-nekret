@@ -1,4 +1,6 @@
 <script lang="ts">
+  import CopyableText from "./CopyableText.svelte";
+
   export let person: {
     pfp: string;
     name: string;
@@ -14,8 +16,8 @@
   <div class="contact-info">
     <p class="name">{person.name}</p>
     <p class="description">{person.description}</p>
-    <p class="copyable">{person.phone}</p>
-    <p class="copyable">{person.email}</p>
+    <CopyableText text={person.phone} />
+    <CopyableText text={person.email} />
   </div>
 </div>
 
@@ -27,7 +29,7 @@
     padding: 1.5rem;
 
     border-radius: 0.5rem;
-    background-color: #fff;
+    background: linear-gradient(90deg, #f2f2f2 0%, #fafafa 100%);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.125);
   }
 
@@ -53,10 +55,5 @@
   .contact-info .description {
     font-size: 1rem;
     font-weight: 400;
-  }
-  .contact-info .copyable {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #0080ff;
   }
 </style>
