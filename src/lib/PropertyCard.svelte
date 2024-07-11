@@ -17,12 +17,12 @@
     <div class="basic-data-container">
       <p>{property.kvadratura} m²</p>
       <p>&middot;</p>
-      <!-- <p>{property.bedrooms} spavaćih soba</p>
+      <p>{property.bedrooms || 0} spavaćih soba</p>
       <p>&middot;</p>
-      <p>{property.bathrooms} kupaone</p> -->
+      <p>{property.bathrooms || 0} kupaone</p>
     </div>
     <div class="additional-data-container">
-      {#each Object.values(property.ostale_info) as featureGroup}
+      {#each Object.values(property.ostale_info).slice(0, 2) as featureGroup}
         {#each featureGroup as feature}
           <p class="tag">{feature}</p>
         {/each}
@@ -128,6 +128,8 @@
   .property-card .property-data-container .additional-data-container {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    overflow: hidden;
   }
   .property-card .property-data-container .additional-data-container .tag {
     background-color: #e6e6e6;

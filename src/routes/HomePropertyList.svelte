@@ -6,6 +6,7 @@
     status: number;
     body: {
       properties: DbProperty[];
+      countsPerType: Record<PropertyType, number>;
     };
   };
 
@@ -17,6 +18,7 @@
 
   <HomePropertyNavigation
     options={["Stanovi", "Kuće", "Poslovni prostori", "Zemljišta"]}
+    countsPerType={data.body.countsPerType}
     bind:selectedOption
   />
 

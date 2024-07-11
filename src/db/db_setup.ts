@@ -2,6 +2,22 @@ import PocketBase from "pocketbase";
 
 const pb = new PocketBase("http://127.0.0.1:9992");
 
+export const getCountsPerType = async () => {
+  const types: PropertyType[] = ["stan", "kuca", "poslovni", "zemljiste"];
+
+  const counts: Record<PropertyType, number> = {} as Record<PropertyType, number>;
+
+  for (const type of types) {
+    const res = await pb.collection("Nekretnine").getList(1, 1, {
+      filter: `type = "${type}"`,
+    });
+
+    counts[type] = res.totalItems;
+  }
+
+  return counts;
+};
+
 export const getProperties = async (type?: PropertyType) => {
   const resultList = await pb.collection<DbProperty>("Nekretnine").getList(1, 6, {
     filter: type ? `type = "${type}"` : "",

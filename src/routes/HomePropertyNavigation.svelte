@@ -2,24 +2,34 @@
   import { page } from "$app/stores";
 
   export let options: string[];
+  export let countsPerType: Record<PropertyType, number>;
   export let selectedOption: string;
 
-  let path = $page.url.pathname;
-  let type: PropertyType = figureOutType();
+  // let path = $page.url.pathname;
+  // let type: PropertyType = figureOutType();
 
-  function figureOutType() {
-    const parts = path.split("/");
-    if (parts.length > 2) {
-      return parts[2] as PropertyType;
+  function figureOutType(label: string): PropertyType {
+    switch (label) {
+      case "Stanovi":
+        return "stan";
+      case "Kuće":
+        return "kuca";
+      case "Poslovni prostori":
+        return "poslovni";
+      case "Zemljišta":
+        return "zemljiste";
+      default:
+        return "stan";
     }
-    return "stan";
   }
 </script>
 
 <ul class="propertyTypesFilter">
   {#each options as label}
     <li class:active={selectedOption === label}>
-      <button type="button" on:click={() => (selectedOption = label)}>{label}</button>
+      <button type="button" on:click={() => (selectedOption = label)}
+        >{label} ({countsPerType[figureOutType(label)]})</button
+      >
     </li>
   {/each}
 </ul>
@@ -39,11 +49,15 @@
     color: #808080;
     font-weight: 400;
     font-size: 1.5rem;
+    transition: color 200ms ease-out;
   }
 
   .propertyTypesFilter li.active {
     color: #262626;
     font-weight: 500;
+  }
+  .propertyTypesFilter li:hover {
+    color: #262626;
   }
 
   .propertyTypesFilter button {

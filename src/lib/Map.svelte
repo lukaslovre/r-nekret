@@ -1,5 +1,7 @@
 <script lang="ts">
   import { Map, TileLayer, Marker, Popup } from "sveaflet";
+
+  export let markers: [number, number][] = [];
 </script>
 
 <div id="map">
@@ -17,11 +19,14 @@
           '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }}
     />
-    <Marker latlng={[45.815399, 15.966568]}>
-      <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
-      </Popup>
-    </Marker>
+
+    {#each markers as [lat, lng] ("" + lat + lng)}
+      <Marker latlng={[lat, lng]}>
+        <!-- <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup> -->
+      </Marker>
+    {/each}
   </Map>
 </div>
 
