@@ -7,7 +7,7 @@
   export let data: {
     status: number;
     body: {
-      properties: Property[];
+      properties: DbProperty[];
     };
   };
 

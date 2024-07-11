@@ -1,4 +1,4 @@
-type PropertyType = "stan" | "kuca" | "poslovni";
+type PropertyType = "stan" | "kuca" | "poslovni" | "zemljiste";
 
 type Property = {
   id: string;
@@ -48,7 +48,7 @@ type DbProperty = {
   grad: string;
   id: string;
   kontakt: string;
-  expand: {
+  expand?: {
     kontakt: DbProdavac;
   };
   kvadratura: number;
@@ -58,7 +58,7 @@ type DbProperty = {
   nacrt: string[];
   opis: string;
   ostale_info: {
-    [key: string]: any;
+    [key: string]: any[];
   };
   slike: string[];
   updated: string;

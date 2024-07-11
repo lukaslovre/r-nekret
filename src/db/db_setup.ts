@@ -2,16 +2,26 @@ import PocketBase from "pocketbase";
 
 const pb = new PocketBase("http://127.0.0.1:9992");
 
-export const getProperties = async () => {
-  const resultList = await pb.collection("Nekretnine").getList(1, 10);
+export const getProperties = async (type?: PropertyType) => {
+  const resultList = await pb.collection<DbProperty>("Nekretnine").getList(1, 6, {
+    filter: type ? `type = "${type}"` : "",
+    sort: "-created,id",
+  });
 
-  return resultList;
+  resultList.items = resultList.items.map((item) => {
+    item.slike = item.slike.map((fileName) =>
+      transformPocketbaseUrlToAbsolute(fileName, item.collectionName, item.id)
+    );
+    return item;
+  });
+
+  return resultList.items;
 };
 
 export const getPropertyById = async (id: string) => {
-  const record = (await pb.collection("Nekretnine").getOne(id, {
+  const record = await pb.collection<DbProperty>("Nekretnine").getOne(id, {
     expand: "kontakt",
-  })) as DbProperty;
+  });
 
   // Transform all image file names to absolute URLs
 
@@ -23,11 +33,13 @@ export const getPropertyById = async (id: string) => {
     transformPocketbaseUrlToAbsolute(fileName, record.collectionName, record.id)
   );
 
-  record.expand.kontakt.slika = transformPocketbaseUrlToAbsolute(
-    record.expand.kontakt.slika,
-    record.expand.kontakt.collectionName,
-    record.expand.kontakt.id
-  );
+  if (record.expand) {
+    record.expand.kontakt.slika = transformPocketbaseUrlToAbsolute(
+      record.expand.kontakt.slika,
+      record.expand.kontakt.collectionName,
+      record.expand.kontakt.id
+    );
+  }
 
   return record;
 };

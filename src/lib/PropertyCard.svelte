@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let property: Property;
+  export let property: DbProperty;
 
   function addCommasToPrice(price: number): string {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -8,22 +8,24 @@
 
 <div class="property-card">
   <div class="img-container">
-    <img src={property.images[0]} alt="" />
+    <img src={property.slike[0]} alt="" />
   </div>
 
   <div class="property-data-container">
-    <p class="location">{property.location}</p>
-    <p class="price">€ {addCommasToPrice(property.price)}</p>
+    <p class="location">{property.grad}</p>
+    <p class="price">€ {addCommasToPrice(property.cijena)}</p>
     <div class="basic-data-container">
-      <p>{property.squareMeters} m²</p>
+      <p>{property.kvadratura} m²</p>
       <p>&middot;</p>
-      <p>{property.bedrooms} spavaćih soba</p>
+      <!-- <p>{property.bedrooms} spavaćih soba</p>
       <p>&middot;</p>
-      <p>{property.bathrooms} kupaone</p>
+      <p>{property.bathrooms} kupaone</p> -->
     </div>
     <div class="additional-data-container">
-      {#each property.features as feature}
-        <p class="tag">{feature}</p>
+      {#each Object.values(property.ostale_info) as featureGroup}
+        {#each featureGroup as feature}
+          <p class="tag">{feature}</p>
+        {/each}
       {/each}
     </div>
   </div>
