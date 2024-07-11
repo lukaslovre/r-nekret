@@ -36,6 +36,10 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    background-color: #fafafa;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.125);
   }
 
   .property-card .img-container {
@@ -52,14 +56,21 @@
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.1);
-    border-radius: 0.25rem;
+    border-radius: 0.5rem 0.5rem 0.125rem 0.125rem;
   }
 
   .property-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem 0.5rem 0.125rem 0.125rem;
+  }
+
+  .location,
+  .price,
+  .additional-data-container,
+  .more-info-button {
+    padding: 0 1rem;
   }
 
   .property-card .property-data-container {
@@ -69,8 +80,9 @@
   }
 
   .property-card .more-info-button {
-    background-color: #f5f5f5;
+    background: linear-gradient(90deg, #f2f2f2 0%, #e5e5e5 50%, #f2f2f2 100%);
     padding: 0.5rem 0;
+    margin: 0 1rem 1rem;
     border-radius: 0.375rem;
     border: none;
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.075);
@@ -99,7 +111,7 @@
     color: #1a1a1a;
   }
   .property-card .property-data-container .basic-data-container {
-    padding: 0.75rem 0;
+    padding: 0.75rem 1rem;
     display: flex;
     justify-content: space-between;
     gap: 0.5rem;

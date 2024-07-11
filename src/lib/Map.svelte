@@ -5,8 +5,8 @@
 <div id="map">
   <Map
     options={{
-      center: [45.815399, 15.966568],
-      zoom: 13,
+      center: [44.815399, 15.966568],
+      zoom: 7,
     }}
   >
     <TileLayer
