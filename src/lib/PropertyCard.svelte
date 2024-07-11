@@ -95,10 +95,12 @@
     text-align: center;
 
     cursor: pointer;
-    transition: background-color 200ms ease-out;
+    transition:
+      background 200ms ease-out,
+      box-shadow 200ms ease-out;
   }
   .property-card .more-info-button:hover {
-    background-color: #e6e6e6;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
   }
 
   .property-card .property-data-container .location {
