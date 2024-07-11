@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"bigger-picture": "^1.1.17",
 		"pocketbase": "^0.21.3",
 		"sveaflet": "^0.0.6"
 	}

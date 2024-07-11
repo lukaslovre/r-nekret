@@ -3,7 +3,25 @@
   import MapWithSingleMarker from "$lib/MapWithSingleMarker.svelte";
   import { formatPriceToString } from "$lib/utils";
 
+  import BiggerPicture from "bigger-picture/svelte";
+  import "bigger-picture/css";
+  import { onMount } from "svelte";
+
   export let data: { property: DbProperty };
+  let bp;
+
+  onMount(() => {
+    bp = BiggerPicture({
+      target: document.body,
+    });
+  });
+
+  function openBiggerPicture(pos: number) {
+    bp.open({
+      items: document.querySelectorAll(".images-container img"),
+      position: pos,
+    });
+  }
 
   function combineLocation(grad: string, kvart: string, adresa: string) {
     return `${grad}, ${adresa}`;
@@ -22,15 +40,30 @@
 
 <div class="images-container">
   <div>
-    <div class="img-container">
-      <img src={data.property.slike[0]} alt="" />
+    <div
+      class="img-container"
+      on:click|preventDefault={() => {
+        openBiggerPicture(0);
+      }}
+    >
+      <img
+        src={data.property.slike[0]}
+        data-img={data.property.slike[0]}
+        data-max-zoom="2"
+        alt=""
+      />
     </div>
   </div>
 
   <div class="other-photos">
-    {#each data.property.slike.slice(1) as photo}
-      <div class="img-container">
-        <img src={photo} alt="" />
+    {#each data.property.slike.slice(1) as photo, i}
+      <div
+        class="img-container"
+        on:click|preventDefault={() => {
+          openBiggerPicture(i + 1);
+        }}
+      >
+        <img src={photo} alt="" data-img={photo} data-max-zoom="2" />
       </div>
     {/each}
   </div>
@@ -81,11 +114,15 @@
 </div>
 
 <style>
+  :global(.bp-wrap) {
+    z-index: 1000;
+  }
   .img-container {
     width: 100%;
     height: 20rem;
 
     position: relative;
+    cursor: zoom-in;
   }
   .img-container::after {
     content: "";
@@ -104,9 +141,9 @@
 
   .img-container img {
     width: 100%;
+    min-width: 8rem;
     height: 100%;
     object-fit: cover;
-    /* border-radius: 0.5rem 0.5rem 0.125rem 0.125rem; */
   }
 
   /* div */
@@ -124,6 +161,8 @@
   .images-container .other-photos {
     display: flex;
     gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
   .images-container img {
     width: 100%;
