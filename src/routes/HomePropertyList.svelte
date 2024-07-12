@@ -38,7 +38,7 @@
     color: #404040;
 
     text-align: center;
-    margin: 0 2rem;
+    margin: 0 3rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #bfbfbf;
   }

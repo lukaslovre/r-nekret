@@ -58,14 +58,37 @@
     text-transform: uppercase;
 
     transition: color 150ms ease-out;
+
+    position: relative;
+  }
+  nav ul li::after {
+    content: "";
+    position: absolute;
+
+    height: 2px;
+    background-color: hsl(0, 0%, 10%);
+    border-radius: 2px;
+
+    left: 12.5%;
+    bottom: -0.5rem;
+    width: 75%;
+    transform: scaleX(0);
+
+    transition: transform 200ms ease-out;
   }
 
   nav ul li:hover {
     color: #000;
   }
+  nav ul li:hover::after {
+    transform: scaleX(0.33);
+  }
 
   nav ul li.active {
     color: #000;
     font-weight: 500;
+  }
+  nav ul li.active::after {
+    transform: scaleX(1);
   }
 </style>
