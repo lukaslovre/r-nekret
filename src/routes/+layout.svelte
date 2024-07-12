@@ -1,11 +1,42 @@
 <script lang="ts">
   import { page } from "$app/stores";
+  import { onMount } from "svelte";
+  import MobileNav from "./MobileNav.svelte";
 
   $: path = $page.url.pathname;
+
+  let hamburgerOpen = false;
+
+  function toggleHamburger() {
+    hamburgerOpen = !hamburgerOpen;
+  }
+
+  // get the screen width and switch a mobile variable on/off
+  let screenWidth: number;
+  $: mobile = screenWidth <= 768;
+
+  onMount(() => {
+    screenWidth = window.innerWidth;
+
+    window.addEventListener("resize", () => {
+      screenWidth = window.innerWidth;
+    });
+  });
 </script>
 
 <header>
   <a href="/"> <h1>Rea Nekretnine</h1></a>
+
+  <button class="hamburger" on:click={toggleHamburger}>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </button>
+
+  {#if hamburgerOpen}
+    <MobileNav {path} {toggleHamburger} />
+  {/if}
+
   <nav>
     <ul>
       <li class:active={path === "/"}><a href="/">Naslovnica</a></li>
@@ -23,12 +54,14 @@
 
 <style>
   header {
+    position: relative;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding-top: 3rem;
-    padding-bottom: 5rem;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
   }
 
   h1 {
@@ -42,6 +75,24 @@
     color: transparent;
 
     text-shadow: -1px 2px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 2rem;
+    height: 1.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .hamburger .line {
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
   }
 
   nav ul {
@@ -90,5 +141,19 @@
   }
   nav ul li.active::after {
     transform: scaleX(1);
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    nav {
+      display: none;
+    }
   }
 </style>
