@@ -5,12 +5,27 @@
   export let data: {
     status: number;
     body: {
-      properties: DbProperty[];
+      properties: Record<PropertyType, DbProperty[]>;
       countsPerType: Record<PropertyType, number>;
     };
   };
 
   let selectedOption = "Stanovi";
+
+  function figureOutType(label: string): PropertyType {
+    switch (label) {
+      case "Stanovi":
+        return "stan";
+      case "Kuće":
+        return "kuca";
+      case "Poslovni prostori":
+        return "poslovni";
+      case "Zemljišta":
+        return "zemljiste";
+      default:
+        return "stan";
+    }
+  }
 </script>
 
 <section id="home-property-list">
@@ -23,7 +38,7 @@
   />
 
   <section id="property-list-container">
-    {#each data.body.properties as property}
+    {#each data.body.properties[figureOutType(selectedOption)] || [] as property}
       <PropertyCard {property} />
     {/each}
   </section>

@@ -96,11 +96,12 @@
 
     cursor: pointer;
     transition:
-      background 200ms ease-out,
-      box-shadow 200ms ease-out;
+      box-shadow 200ms ease-out,
+      transform 200ms ease-out;
   }
   .property-card .more-info-button:hover {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
   }
 
   .property-card .property-data-container .location {

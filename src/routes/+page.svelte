@@ -7,7 +7,7 @@
   export let data: {
     status: number;
     body: {
-      properties: DbProperty[];
+      properties: Record<PropertyType, DbProperty[]>;
       countsPerType: Record<PropertyType, number>;
     };
   };

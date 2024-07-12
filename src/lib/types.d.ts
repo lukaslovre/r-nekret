@@ -62,6 +62,7 @@ type DbProperty = {
   };
   slike: string[];
   updated: string;
+  type: PropertyType;
 };
 
 // kontakt: {
