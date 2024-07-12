@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { scale } from "svelte/transition";
+
   export let property: DbProperty;
 
   function addCommasToPrice(price: number): string {
@@ -6,7 +8,11 @@
   }
 </script>
 
-<div class="property-card">
+<div
+  class="property-card"
+  in:scale={{ duration: 200, delay: 200, start: 0.8 }}
+  out:scale={{ duration: 200, delay: 0, start: 0.8 }}
+>
   <div class="img-container">
     <img src={property.slike[0]} alt="" />
   </div>

@@ -16,8 +16,10 @@
   let markers: [number, number][] = [];
 
   onMount(async () => {
-    markers = data.body.properties.map((property) => {
-      return [property.lat, property.lon];
+    markers = Object.values(data.body.properties).flatMap((properties) => {
+      return properties.map((property) => {
+        return [property.lat, property.lon] as [number, number];
+      });
     });
 
     const module = await import("$lib/Map.svelte");

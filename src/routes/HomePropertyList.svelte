@@ -38,7 +38,7 @@
   />
 
   <section id="property-list-container">
-    {#each data.body.properties[figureOutType(selectedOption)] || [] as property}
+    {#each data.body.properties[figureOutType(selectedOption)] || [] as property (property.id)}
       <PropertyCard {property} />
     {/each}
   </section>
