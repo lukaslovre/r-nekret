@@ -160,4 +160,10 @@
     color: #1a1a1a;
     text-transform: capitalize;
   }
+
+  @media (max-width: 480px) {
+    .property-card .img-container {
+      height: 15rem;
+    }
+  }
 </style>

@@ -47,6 +47,12 @@
 </section>
 
 <style>
+  #home-property-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
   h2 {
     font-size: 2.5rem;
     font-weight: 500;
@@ -56,12 +62,6 @@
     margin: 0 3rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid #bfbfbf;
-  }
-
-  #home-property-list {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
   }
 
   #property-list-container {
@@ -81,5 +81,20 @@
   }
   .see-all-link:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 2rem;
+      margin: 0 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #property-list-container {
+      gap: 3rem;
+
+      grid-template-columns: 1fr;
+    }
   }
 </style>

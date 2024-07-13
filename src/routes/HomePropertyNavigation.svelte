@@ -68,4 +68,15 @@
     color: inherit;
     font: inherit;
   }
+
+  @media (max-width: 768px) {
+    .propertyTypesFilter {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .propertyTypesFilter li {
+      font-size: 1.25rem;
+    }
+  }
 </style>

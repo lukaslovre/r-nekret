@@ -9,14 +9,14 @@
     options={{
       center: [44.815399, 15.966568],
       zoom: 7,
+      attributionControl: false,
     }}
   >
     <TileLayer
       url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
       options={{
         maxZoom: 19,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        attribution: false,
       }}
     />
 
@@ -44,5 +44,12 @@
 
   :global(.leaflet-container) {
     border-radius: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    #map {
+      height: 20rem;
+      margin-bottom: 6rem;
+    }
   }
 </style>
