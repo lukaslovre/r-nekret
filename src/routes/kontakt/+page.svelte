@@ -7,14 +7,14 @@
     {
       pfp: "https://www.psychologs.com/wp-content/uploads/2024/01/8-tips-to-be-a-jolly-person.jpg",
       name: "John Doe",
-      description: "Prodajem stan u Zagrebu",
+      description: "Su-osnivačica",
       phone: "091 123 4567",
       email: "reanekretnine@gmail.com",
     },
     {
       pfp: "https://www.psychologs.com/wp-content/uploads/2024/01/8-tips-to-be-a-jolly-person.jpg",
       name: "John Doe",
-      description: "Prodajem stan u Zagrebu",
+      description: "Su-osnivačica",
       phone: "091 123 4567",
       email: "reanekretnine@gmail.com",
     },
@@ -72,5 +72,16 @@
     font-size: 1.5rem;
     font-weight: 600;
     /* margin-bottom: 1rem; */
+  }
+
+  @media (max-width: 768px) {
+    .two-col-container {
+      flex-direction: column;
+    }
+
+    .contact-cards-container {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
 </style>

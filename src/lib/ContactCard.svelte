@@ -31,6 +31,7 @@
     border-radius: 0.5rem;
     background-color: #f2f2f2;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.125);
+    overflow-x: hidden;
   }
 
   .contact-card img {
@@ -55,5 +56,19 @@
   .contact-info .description {
     font-size: 1rem;
     font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    .contact-card {
+      flex-direction: column;
+      align-items: flex-start;
+      /* gap: 1rem; */
+      /* text-align: center; */
+    }
+
+    /* .contact-card img {
+      width: 4rem;
+      height: 4rem;
+    } */
   }
 </style>
