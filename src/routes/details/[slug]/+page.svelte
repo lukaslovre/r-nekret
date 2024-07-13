@@ -40,12 +40,6 @@
 <div class="two-col-container">
   <div class="col-1">
     <TextInformation property={data.property} />
-
-    <!-- contact -->
-    <div class="contact-container">
-      <h2>Kontakt</h2>
-      <ContactCard person={formatPersonToContactCard(data.property.expand.kontakt)} />
-    </div>
   </div>
 
   <div class="col-2">
@@ -55,6 +49,12 @@
 
     <img src={data.property.nacrt[0] || ""} alt="tlocrt" class="tlocrt" />
   </div>
+</div>
+
+<!-- contact -->
+<div class="contact-container">
+  <h2>Kontakt</h2>
+  <ContactCard person={formatPersonToContactCard(data.property.expand.kontakt)} />
 </div>
 
 <style>
@@ -78,16 +78,6 @@
     gap: 2rem;
   }
 
-  .contact-container {
-    margin-top: 2rem;
-  }
-  .contact-container h2 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
   /* col 2 */
   .col-2 {
     display: flex;
@@ -98,5 +88,25 @@
     width: 100%;
     height: auto;
     border-radius: 0.25rem;
+  }
+
+  .contact-container {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .contact-container h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .two-col-container {
+      flex-direction: column;
+      /* gap: 2rem; */
+    }
   }
 </style>

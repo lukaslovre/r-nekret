@@ -74,4 +74,10 @@
     object-fit: cover;
     border-radius: 0.25rem;
   }
+
+  @media (max-width: 768px) {
+    .other-photos {
+      display: none;
+    }
+  }
 </style>
