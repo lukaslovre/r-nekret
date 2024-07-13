@@ -29,8 +29,7 @@
     padding: 1.5rem;
 
     border-radius: 0.5rem;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0) 100%);
-
+    background-color: #f2f2f2;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.125);
   }
 

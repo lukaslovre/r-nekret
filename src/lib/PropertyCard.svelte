@@ -1,5 +1,6 @@
 <script lang="ts">
   import { scale } from "svelte/transition";
+  import ChevronIcon from "../icons/ChevronIcon.svelte";
 
   export let property: DbProperty;
 
@@ -22,9 +23,9 @@
     <p class="price">€ {addCommasToPrice(property.cijena)}</p>
     <div class="basic-data-container">
       <p>{property.kvadratura} m²</p>
-      <p>&middot;</p>
+      <p class="dot">&middot;</p>
       <p>{property.bedrooms || 0} spavaćih soba</p>
-      <p>&middot;</p>
+      <p class="dot">&middot;</p>
       <p>{property.bathrooms || 0} kupaone</p>
     </div>
     <div class="additional-data-container">
@@ -36,7 +37,9 @@
     </div>
   </div>
 
-  <a class="more-info-button" href={`/details/${property.id}`}>Više informacija &gt;</a>
+  <a class="more-info-button" href={`/details/${property.id}`}>
+    Više informacija <ChevronIcon />
+  </a>
 </div>
 
 <style>
@@ -88,6 +91,11 @@
   }
 
   .property-card .more-info-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.125rem;
+
     background: linear-gradient(90deg, #f2f2f2 0%, #e5e5e5 50%, #f2f2f2 100%);
     padding: 0.5rem 0;
     margin: 0 1rem 1rem;
@@ -103,11 +111,13 @@
     cursor: pointer;
     transition:
       box-shadow 200ms ease-out,
-      transform 200ms ease-out;
+      transform 200ms ease-out,
+      gap 200ms ease-out;
   }
   .property-card .more-info-button:hover {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
     transform: translateY(-1px);
+    gap: 0.25rem;
   }
 
   .property-card .property-data-container .location {
@@ -131,9 +141,10 @@
     border-right: none;
 
     font-size: 0.875rem;
-    font-weight: 400;
+    font-weight: 500;
     color: #1a1a1a;
   }
+
   .property-card .property-data-container .additional-data-container {
     display: flex;
     gap: 0.5rem;
