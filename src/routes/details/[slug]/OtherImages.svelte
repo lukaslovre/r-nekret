@@ -9,9 +9,12 @@
   {#each classNames as classNumber, i}
     <div class={classNumber}>
       {#if images[i]}
-        <div class="img-container" on:click|preventDefault={() => {
-          openBiggerPicture(i+1);
-        }}>
+        <div
+          class="img-container"
+          on:click|preventDefault={() => {
+            openBiggerPicture(i + 1);
+          }}
+        >
           <img src={images[i]} alt="" data-img={images[i]} data-max-zoom="2" />
         </div>
       {/if}
@@ -32,12 +35,18 @@
   .other-photos > div {
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 0.25rem;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
   }
 
   .first {
     /* span 2 columns */
-    grid-column: span 2;
+    /* grid-column: span 2; */
     grid-row: span 2;
+    grid-column: span 2;
   }
   .second,
   .third {

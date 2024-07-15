@@ -7,7 +7,7 @@
 
   export let images: string[];
 
-  let galleryUrl = $page.url.pathname + "/gallery"
+  let galleryUrl = $page.url.pathname + "/gallery";
 
   let bp;
 
@@ -23,7 +23,6 @@
       position: pos,
     });
   }
-
 </script>
 
 <!-- on:click|preventDefault={() => {
@@ -32,16 +31,19 @@
 
 <div class="images-container">
   <div class="primary-image">
-    <div class="img-container" on:click|preventDefault={() => {
-      openBiggerPicture(0);
-    }}>
+    <div
+      class="img-container"
+      on:click|preventDefault={() => {
+        openBiggerPicture(0);
+      }}
+    >
       <img src={images[0]} data-img={images[0]} data-max-zoom="2" alt="" />
     </div>
 
     <a href={galleryUrl} class="open-gallery">Vidi sve slike</a>
   </div>
 
-  <OtherImages images={images.slice(1)}  {openBiggerPicture} />
+  <OtherImages images={images.slice(1)} {openBiggerPicture} />
 </div>
 
 <style>
@@ -53,6 +55,7 @@
   }
   .images-container > div {
     width: 50%;
+    height: 100%;
   }
 
   .img-container {

@@ -27,9 +27,13 @@
 <ul class="propertyTypesFilter">
   {#each options as label}
     <li class:active={selectedOption === label}>
-      <button type="button" on:click={() => (selectedOption = label)}
-        >{label} ({countsPerType[figureOutType(label)]})</button
+      <button
+        disabled={countsPerType[figureOutType(label)] === 0}
+        type="button"
+        on:click={() => (selectedOption = label)}
       >
+        {label} ({countsPerType[figureOutType(label)]})
+      </button>
     </li>
   {/each}
 </ul>
@@ -67,6 +71,11 @@
 
     color: inherit;
     font: inherit;
+  }
+  button[disabled] {
+    color: hsl(0, 0%, 80%);
+    /* default cursor, no change, NOT "not-allowed" */
+    cursor: initial;
   }
 
   @media (max-width: 768px) {

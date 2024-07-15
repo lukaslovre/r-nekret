@@ -20,7 +20,10 @@
 
   <div class="property-data-container">
     <p class="location">{property.grad}</p>
-    <p class="price">€ {addCommasToPrice(property.cijena)}</p>
+    <p class="price">
+      € {addCommasToPrice(property.cijena)}
+      {property.cijena < 5000 ? "mjesečno" : ""}
+    </p>
     <div class="basic-data-container">
       <p>{property.kvadratura} m²</p>
       <p class="dot">&middot;</p>
@@ -98,7 +101,7 @@
 
     background: linear-gradient(90deg, #f2f2f2 0%, #e5e5e5 50%, #f2f2f2 100%);
     padding: 0.5rem 0;
-    margin: 0 1rem 1rem;
+    margin: auto 1rem 1rem 1rem;
     border-radius: 0.375rem;
     border: none;
     box-shadow: 0 2px 1px rgba(0, 0, 0, 0.075);
