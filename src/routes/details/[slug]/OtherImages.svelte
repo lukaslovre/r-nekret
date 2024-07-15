@@ -1,5 +1,6 @@
 <script lang="ts">
   export let images: string[];
+  export let openBiggerPicture;
 
   const classNames = ["first", "second", "third", "fourth", "fifth", "sixth"];
 </script>
@@ -8,8 +9,10 @@
   {#each classNames as classNumber, i}
     <div class={classNumber}>
       {#if images[i]}
-        <div class="img-container">
-          <img src={images[i]} alt="" />
+        <div class="img-container" on:click|preventDefault={() => {
+          openBiggerPicture(i+1);
+        }}>
+          <img src={images[i]} alt="" data-img={images[i]} data-max-zoom="2" />
         </div>
       {/if}
     </div>

@@ -1,7 +1,29 @@
 <script lang="ts">
   import OtherImages from "./OtherImages.svelte";
+  import { page } from "$app/stores";
+  import BiggerPicture from "bigger-picture/svelte";
+  import "bigger-picture/css";
+  import { onMount } from "svelte";
 
   export let images: string[];
+
+  let galleryUrl = $page.url.pathname + "/gallery"
+
+  let bp;
+
+  onMount(() => {
+    bp = BiggerPicture({
+      target: document.body,
+    });
+  });
+
+  function openBiggerPicture(pos: number) {
+    bp.open({
+      items: document.querySelectorAll(".images-container img"),
+      position: pos,
+    });
+  }
+
 </script>
 
 <!-- on:click|preventDefault={() => {
@@ -10,14 +32,16 @@
 
 <div class="images-container">
   <div class="primary-image">
-    <div class="img-container">
+    <div class="img-container" on:click|preventDefault={() => {
+      openBiggerPicture(0);
+    }}>
       <img src={images[0]} data-img={images[0]} data-max-zoom="2" alt="" />
     </div>
 
-    <a href="/" class="open-gallery">Vidi sve slike</a>
+    <a href={galleryUrl} class="open-gallery">Vidi sve slike</a>
   </div>
 
-  <OtherImages images={images.slice(1)} />
+  <OtherImages images={images.slice(1)}  {openBiggerPicture} />
 </div>
 
 <style>

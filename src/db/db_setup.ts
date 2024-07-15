@@ -1,9 +1,10 @@
 import PocketBase from "pocketbase";
 
 // const ipAddr = "temporary-addr.zapto.org";
-const ipAddr = "localhost";
+// const ipAddr = "localhost";
+const ipAddr = "49.13.64.0:9991"
 
-const pb = new PocketBase(`http://${ipAddr}:9992`);
+const pb = new PocketBase(`http://${ipAddr}`);
 
 export const getCountsPerType = async () => {
   const types: PropertyType[] = ["stan", "kuca", "poslovni", "zemljiste"];
@@ -69,5 +70,5 @@ export function transformPocketbaseUrlToAbsolute(
   recordId: string
 ): string {
   //  http://127.0.0.1:8090/api/files/COLLECTION_ID_OR_NAME/RECORD_ID/FILENAME
-  return `http://${ipAddr}:9992/api/files/${collectionName}/${recordId}/${fileName}`;
+  return `http://${ipAddr}/api/files/${collectionName}/${recordId}/${fileName}`;
 }

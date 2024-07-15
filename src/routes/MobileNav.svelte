@@ -4,7 +4,7 @@
 </script>
 
 <nav>
-  <ul>
+  <ul on:click={toggleHamburger}>
     <button on:click={toggleHamburger}>Close</button>
 
     <li class:active={path === "/"}><a href="/">Naslovnica</a></li>

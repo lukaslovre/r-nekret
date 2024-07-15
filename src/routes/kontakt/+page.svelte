@@ -1,7 +1,15 @@
-<script>
+<script lang="ts">
   import ContactCard from "$lib/ContactCard.svelte";
-  import MapWithSingleMarker from "$lib/MapWithSingleMarker.svelte";
-  import ContactMap from "./ContactMap.svelte";
+  // import MapWithSingleMarker from "$lib/MapWithSingleMarker.svelte";
+  import { onMount } from "svelte";
+  import type { SvelteComponent } from "svelte";
+
+  let MapComponent: typeof SvelteComponent;
+
+  onMount(async () => {
+    const module = await import("$lib/MapWithSingleMarker.svelte");
+    MapComponent = module.default as typeof SvelteComponent;
+  });
 
   const people = [
     {
@@ -35,14 +43,21 @@
   <div class="col">
     <h1>Lokacija</h1>
     <p>Antuna Bauera 7, 10 000 Zagreb</p>
-    <MapWithSingleMarker location={{ lat: 45.815399, lng: 15.966568 }}>
-      <img
+
+    {#if MapComponent}
+      <svelte:component this={MapComponent} location={{ lat: 45.815399, lng: 15.966568 }}>
+        <img
         style="width: 100%;"
         class="popup-image"
         src="https://artprojectsforkids.org/wp-content/uploads/2021/06/Draw-a-House.jpg"
         alt="the real estate office from the outside"
       />
-    </MapWithSingleMarker>
+      </svelte:component>
+    {/if}
+<!-- 
+    <MapWithSingleMarker location={{ lat: 45.815399, lng: 15.966568 }}>
+
+    </MapWithSingleMarker> -->
   </div>
 </div>
 

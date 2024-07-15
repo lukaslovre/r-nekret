@@ -1,27 +1,54 @@
 <script lang="ts">
+  import { page } from "$app/stores";
+  import BiggerPicture from "bigger-picture/svelte";
+  import "bigger-picture/css";
+  import { onMount } from "svelte";
+
   export let data: { property: DbProperty };
 
   console.log(data);
 
-  function navigateBack() {
-    window.history.back();
+  console.log($page.url.pathname);
+
+  let propertyPageUrl = $page.url.pathname.slice(0, $page.url.pathname.indexOf("/gallery"));
+  
+
+  let bp;
+
+  onMount(() => {
+    bp = BiggerPicture({
+      target: document.body,
+    });
+  });
+
+  function openBiggerPicture(pos: number) {
+    bp.open({
+      items: document.querySelectorAll(".img-container img"),
+      position: pos,
+    });
   }
+
 </script>
 
 <nav>
-  <button on:click={navigateBack}>&lt; Nazad na nekretninu</button>
+  <a href={propertyPageUrl}>&lt; Nazad na nekretninu</a>
+  <!-- <button on:click={()=>{}}>&lt; Nazad na nekretninu</button> -->
 </nav>
 
 <div class="gallery">
   {#each data.property.slike as slika, i}
-    <div class="img-container">
-      <img src={slika} alt="" />
+    <div class="img-container" on:click|preventDefault={() => {
+      openBiggerPicture(i);
+    }}>
+      <img src={slika} alt="" data-img={slika} data-max-zoom="2" />
     </div>
   {/each}
 </div>
 
 <style>
-  button {
+  a {
+    display: block;
+    width: fit-content;
     margin-bottom: 3rem;
     padding: 0.5rem 1rem;
     border: none;
@@ -34,7 +61,7 @@
     cursor: pointer;
     transition: transform 200ms ease-out;
   }
-  button:hover {
+  a:hover {
     transform: translateY(-2px);
   }
 
