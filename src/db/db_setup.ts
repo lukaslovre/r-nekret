@@ -2,7 +2,7 @@ import PocketBase from "pocketbase";
 
 // const ipAddr = "temporary-addr.zapto.org";
 // const ipAddr = "localhost";
-const ipAddr = "49.13.64.0:9991"
+const ipAddr = "49.13.64.0:9991";
 
 const pb = new PocketBase(`http://${ipAddr}`);
 
@@ -71,4 +71,19 @@ export function transformPocketbaseUrlToAbsolute(
 ): string {
   //  http://127.0.0.1:8090/api/files/COLLECTION_ID_OR_NAME/RECORD_ID/FILENAME
   return `http://${ipAddr}/api/files/${collectionName}/${recordId}/${fileName}`;
+}
+
+export async function getContacts() {
+  const result = await pb.collection<DbProdavac>("Prodavaci").getList(1, 20);
+
+  result.items = result.items.map((item) => {
+    item.slika = transformPocketbaseUrlToAbsolute(
+      item.slika,
+      item.collectionName,
+      item.id
+    );
+    return item;
+  });
+
+  return result.items;
 }

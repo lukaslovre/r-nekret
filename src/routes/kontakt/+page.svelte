@@ -4,6 +4,8 @@
   import { onMount } from "svelte";
   import type { SvelteComponent } from "svelte";
 
+  export let data: { prodavaci: DbProdavac[] };
+
   let MapComponent: typeof SvelteComponent;
 
   onMount(async () => {
@@ -11,22 +13,15 @@
     MapComponent = module.default as typeof SvelteComponent;
   });
 
-  const people = [
-    {
-      pfp: "https://www.psychologs.com/wp-content/uploads/2024/01/8-tips-to-be-a-jolly-person.jpg",
-      name: "John Doe",
-      description: "Su-osnivačica",
-      phone: "091 123 4567",
-      email: "reanekretnine@gmail.com",
-    },
-    {
-      pfp: "https://www.psychologs.com/wp-content/uploads/2024/01/8-tips-to-be-a-jolly-person.jpg",
-      name: "John Doe",
-      description: "Su-osnivačica",
-      phone: "091 123 4567",
-      email: "reanekretnine@gmail.com",
-    },
-  ];
+  function formatPersonToContactCard(person: DbProdavac) {
+    return {
+      pfp: person.slika,
+      name: person.ime,
+      description: person.opis,
+      phone: person.mobitel,
+      email: person.email,
+    };
+  }
 </script>
 
 <div class="two-col-container">
@@ -34,8 +29,8 @@
     <h1>Kontakt</h1>
     <p>Za informacije nazovite nas od ponedjeljka do petka od 8 do 16 sati.</p>
     <div class="contact-cards-container">
-      {#each people as person}
-        <ContactCard {person} />
+      {#each data.prodavaci as person}
+        <ContactCard person={formatPersonToContactCard(person)} />
       {/each}
     </div>
   </div>
@@ -47,14 +42,14 @@
     {#if MapComponent}
       <svelte:component this={MapComponent} location={{ lat: 45.815399, lng: 15.966568 }}>
         <img
-        style="width: 100%;"
-        class="popup-image"
-        src="https://artprojectsforkids.org/wp-content/uploads/2021/06/Draw-a-House.jpg"
-        alt="the real estate office from the outside"
-      />
+          style="width: 100%;"
+          class="popup-image"
+          src="https://artprojectsforkids.org/wp-content/uploads/2021/06/Draw-a-House.jpg"
+          alt="the real estate office from the outside"
+        />
       </svelte:component>
     {/if}
-<!-- 
+    <!-- 
     <MapWithSingleMarker location={{ lat: 45.815399, lng: 15.966568 }}>
 
     </MapWithSingleMarker> -->

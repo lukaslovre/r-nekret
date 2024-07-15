@@ -63,6 +63,8 @@ type DbProperty = {
   slike: string[];
   updated: string;
   type: PropertyType;
+  spavace_sobe: number;
+  kupaone: number;
 };
 
 // kontakt: {

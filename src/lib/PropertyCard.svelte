@@ -24,12 +24,12 @@
     <div class="basic-data-container">
       <p>{property.kvadratura} m²</p>
       <p class="dot">&middot;</p>
-      <p>{property.bedrooms || 0} spavaćih soba</p>
+      <p>{property.spavace_sobe || 0} spavaćih soba</p>
       <p class="dot">&middot;</p>
-      <p>{property.bathrooms || 0} kupaone</p>
+      <p>{property.kupaone || 0} kupaone</p>
     </div>
     <div class="additional-data-container">
-      {#each Object.values(property.ostale_info).slice(0, 2) as featureGroup}
+      {#each Object.values(property.ostale_info) as featureGroup}
         {#each featureGroup as feature}
           <p class="tag">{feature}</p>
         {/each}
