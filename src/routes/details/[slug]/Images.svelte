@@ -43,7 +43,7 @@
     <a href={galleryUrl} class="open-gallery">Vidi sve slike</a>
   </div>
 
-  <OtherImages images={images.slice(1)} {openBiggerPicture} />
+  <OtherImages images={images.slice(1)} {openBiggerPicture} {galleryUrl} />
 </div>
 
 <style>
